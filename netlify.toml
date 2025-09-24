@@ -1,0 +1,9 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# Перенаправляем кастомный URL на функцию
+[[redirects]]
+  from = "/Kuzma_InoverOlga_mail_ru"
+  to = "/.netlify/functions/nok"
+  status = 200

@@ -34,6 +34,6 @@ export const handler = async (event) => {
       "Content-Type": "text/plain",
       "Access-Control-Allow-Origin": "*",
     },
-    body: result,
+    body: result.toString(),
   };
 };

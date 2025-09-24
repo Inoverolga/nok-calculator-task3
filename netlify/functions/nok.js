@@ -1,6 +1,5 @@
 export const handler = async (event) => {
   function HOK(x, y) {
-    if ([x, y].some((num) => num === 0)) return "0";
     if (![x, y].every((num) => Number.isInteger(num) && num > 0)) return "NaN";
     function z(a, b) {
       while (b !== 0) {

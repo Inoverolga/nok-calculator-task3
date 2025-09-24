@@ -3,19 +3,19 @@ export const handler = async (event) => {
     if (![x, y].every((num) => Number.isInteger(num) && num > 0)) {
       console.log("NaN");
       return "NaN";
-    } else {
-      function z(a, b) {
-        while (b !== 0) {
-          let t = b;
-          b = a % b;
-          a = t;
-        }
-        return a;
-      }
-      const s = ((x * y) / z(x, y)).toString();
-      console.log(typeof s);
-      return (x * y) / z(x, y);
     }
+
+    function z(a, b) {
+      while (b !== 0) {
+        let t = b;
+        b = a % b;
+        a = t;
+      }
+      return a;
+    }
+    const s = ((x * y) / z(x, y)).toString();
+    console.log(typeof s);
+    return (x * y) / z(x, y);
   }
 
   const { x, y } = event.queryStringParameters;

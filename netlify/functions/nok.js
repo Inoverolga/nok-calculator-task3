@@ -1,17 +1,28 @@
 export const handler = async (event) => {
   function HOK(x, y) {
     if (![x, y].every((num) => Number.isInteger(num) && num > 0)) return "NaN";
-    for (let i = Math.max(x, y); i <= x * y; i++)
-      if (i % x === 0 && i % y === 0) return i;
+    function not(a, b) {
+      while (b !== 0) {
+        let temp = b;
+        b = a % b;
+        a = temp;
+      }
+      return a;
+    }
+    const gcd = not(x, y);
+    return (x / gcd) * y;
   }
 
   const { x, y } = event.queryStringParameters;
 
   if (!x || !y) {
     return {
-      statusCode: 400,
-      headers: { "Content-Type": "text/plain" },
-      body: "Нужно указать параметры x и y",
+      statusCode: 200,
+      headers: {
+        "Content-Type": "text/plain",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: "NaN",
     };
   }
 
@@ -20,9 +31,9 @@ export const handler = async (event) => {
   return {
     statusCode: 200,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "text/plain",
       "Access-Control-Allow-Origin": "*",
     },
-    body: isNaN(result) ? "NaN" : result.toString(),
+    body: result,
   };
 };

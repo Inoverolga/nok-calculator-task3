@@ -1,32 +1,36 @@
 export const handler = async (event) => {
-  const bigX = BigInt(x);
-  const bigY = BigInt(y);
+  function HOK(x, y) {
+    const bigX = BigInt(x);
+    const bigY = BigInt(y);
 
-  if (![x, y].every((num) => Number.isInteger(num) && num > 0n)) {
-    return "NaN";
-  } else {
-    function z(a, b) {
-      while (b !== 0n) {
-        let t = b;
-        b = a % b;
-        a = t;
+    if (![x, y].every((num) => Number.isInteger(num) && num > 0n)) {
+      console.log("NaN");
+      return "NaN";
+    } else {
+      function z(a, b) {
+        while (b !== 0n) {
+          let t = b;
+          b = a % b;
+          a = t;
+        }
+        return a;
       }
-      return a;
+      const s = ((x * y) / z(x, y)).toString();
+
+      return (x * y) / z(x, y);
     }
-    const s = ((bigX * bigY) / z(bigX, bigY)).toString();
-    return s;
   }
-};
 
-const { x, y } = event.queryStringParameters;
+  const { x, y } = event.queryStringParameters;
 
-const result = HOK(+x, +y);
+  const result = HOK(+x, +y);
 
-return {
-  statusCode: 200,
-  headers: {
-    "Content-Type": "text/plain",
-    "Access-Control-Allow-Origin": "*",
-  },
-  body: result,
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Type": "text/plain",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: result,
+  };
 };

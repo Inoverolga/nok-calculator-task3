@@ -4,7 +4,6 @@ export const handler = async (event) => {
     const bigY = BigInt(y);
 
     if (![x, y].every((num) => Number.isInteger(num) && num > 0n)) {
-      console.log("NaN");
       return "NaN";
     } else {
       function z(a, b) {
@@ -15,9 +14,8 @@ export const handler = async (event) => {
         }
         return a;
       }
-      const s = ((x * y) / z(x, y)).toString();
-
-      return (x * y) / z(x, y);
+      const s = ((bigX * bigY) / z(bigX, bigY)).toString();
+      return s;
     }
   }
 

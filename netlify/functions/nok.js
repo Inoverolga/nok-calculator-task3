@@ -1,21 +1,21 @@
 export const handler = async (event) => {
-  function HOK(a, b) {
-    if (![a, b].every((num) => Number.isInteger(num) && num > 0)) return NaN;
-    const nod = (x, y) => (y === 0 ? x : nod(y, x % y));
-    return (a * b) / nod(a, b);
+  function HOK(x, y) {
+    if (![x, y].every((num) => Number.isInteger(num) && num > 0)) return NaN;
+    const nod = (a, b) => (a === 0 ? a : nod(b, a % b));
+    return (x * y) / nod(x, y);
   }
 
-  const { a, b } = event.queryStringParameters;
+  const { x, y } = event.queryStringParameters;
 
-  if (!a || !b) {
+  if (!x || !y) {
     return {
       statusCode: 400,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Нужно указать параметры a и b" }),
+      headers: { "Content-Type": "text/plain" },
+      body: "Нужно указать параметры x и y",
     };
   }
 
-  const result = HOK(+a, +b);
+  const result = HOK(+x, +y);
 
   return {
     statusCode: 200,
@@ -23,10 +23,6 @@ export const handler = async (event) => {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    body: JSON.stringify({
-      a: +a,
-      b: +b,
-      nok: result,
-    }),
+    body: isNaN(result) ? "NaN" : result.toString(),
   };
 };

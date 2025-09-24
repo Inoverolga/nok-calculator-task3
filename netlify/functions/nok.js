@@ -21,7 +21,7 @@ export const handler = async (event) => {
 
   const { x, y } = event.queryStringParameters;
 
-  const result = HOK(+x, +y);
+  const result = HOK(x, y);
 
   return {
     statusCode: 200,

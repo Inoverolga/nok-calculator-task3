@@ -1,7 +1,8 @@
 export const handler = async (event) => {
   function HOK(x, y) {
     //     if (![x, y].every((num) => Number.isInteger(num) && num > 0)) return "NaN";
-    if (![x, y].every((num) => Number.isInteger(num) && num > 0)) {
+    // if (![x, y].every((num) => Number.isInteger(num) && num > 0)) {
+    if (x < 0 && y < 0) {
       debugger;
       console.log("NaN");
       return "NaN";
@@ -15,7 +16,7 @@ export const handler = async (event) => {
         return a;
       }
       const s = ((x * y) / z(x, y)).toString();
-      console.log(typeof s);
+      console.log(s);
       return (x * y) / z(x, y);
     }
   }

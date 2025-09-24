@@ -1,8 +1,8 @@
 export const handler = async (event) => {
   function HOK(x, y) {
-    if (![x, y].every((num) => Number.isInteger(num) && num > 0)) return NaN;
-    const nod = (a, b) => (b === 0 ? a : nod(b, a % b));
-    return (x * y) / nod(x, y);
+    if (![x, y].every((num) => Number.isInteger(num) && num > 0)) return "NaN";
+    for (let i = Math.max(x, y); i <= x * y; i++)
+      if (i % x === 0 && i % y === 0) return i;
   }
 
   const { x, y } = event.queryStringParameters;

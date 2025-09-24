@@ -3,7 +3,7 @@ export const handler = async (event) => {
     const bigX = BigInt(x);
     const bigY = BigInt(y);
 
-    if (![x, y].every((num) => Number.isInteger(num) && num > 0n)) {
+    if (![+x, +y].every((num) => Number.isInteger(num) && num > 0n)) {
       return "NaN";
     } else {
       function z(a, b) {

@@ -2,7 +2,7 @@ export const handler = async (event) => {
   function HOK(x, y) {
     //     if (![x, y].every((num) => Number.isInteger(num) && num > 0)) return "NaN";
     if (!Number.isInteger(x) || !Number.isInteger(y) || x < 0 || y < 0)
-      return "NaN";
+      return NaN;
     function z(a, b) {
       while (b !== 0) {
         let t = b;

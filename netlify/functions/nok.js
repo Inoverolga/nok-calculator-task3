@@ -1,9 +1,7 @@
 export const handler = async (event) => {
   function HOK(x, y) {
-    if (![x, y].every((num) => Number.isInteger(num) && num >= 0)) return "NaN";
-    if (x === 0 || y === 0) {
-      return 0;
-    }
+    if (![x, y].every((num) => Number.isInteger(num) && num > 0)) return "NaN";
+    if ([x.y].some((num) => num === 0)) return "0";
 
     function not(a, b) {
       while (b !== 0) {
@@ -13,8 +11,8 @@ export const handler = async (event) => {
       }
       return a;
     }
-    const gcd = not(x, y);
-    return (x / gcd) * y;
+    const z = not(x, y);
+    return (x / z) * y;
   }
 
   const { x, y } = event.queryStringParameters;
